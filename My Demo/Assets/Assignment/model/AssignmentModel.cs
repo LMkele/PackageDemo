@@ -10,6 +10,8 @@ namespace GameFramework.Resource
 {
     public class AssignmentModel : ProcedureBase
     {
+        public Assignment assignment;
+        public List<Assignment> assList;
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -28,15 +30,47 @@ namespace GameFramework.Resource
         /// <param name="e"></param>
         public void initAssignment(object sender, GameEventArgs e)
         {
-
+            //根据任务列表和当前任务ID初始化任务
         }
         public void requestFail(object sender, GameEventArgs e)
         {
-
+            //请求失败
         }
         public void changeItems(object sender, GameEventArgs e)
         {
-            
+            PackageItemChange packageItemChange = (PackageItemChange)e;
+            int[] id = packageItemChange.changeId;
+            if (id.Length <= 0)
+            {
+                return;
+            }
+            int[] needId = assignment.NeedID;
+            int[] needNum = assignment.NeedNum;
+            for (var j = 0; j < needId.Length; j++)
+            {
+                for (var i = 0; i < id.Length; i++)
+                {
+                    if (needId[j] == id[i])
+                    {
+                        needNum[i] = packageItemChange.changeNum[i];
+                    }
+                }
+            }
+        }
+        public List<Assignment> getAssignmentList()
+        {
+            return assList;
+        }
+        public Assignment? getAssignmentById(int Id)
+        {
+            for (var i = 0; i < assList.Count; i++)
+            {
+                if (Id == assList[i].ID)
+                {
+                    return assList[i];
+                }
+            }
+            return null;
         }
         public struct Assignment
         {
@@ -74,12 +108,17 @@ namespace GameFramework.Resource
                 {
                     return AssNeedID;
                 }
+
             }
             public int[] NeedNum
             {
                 get
                 {
                     return AssNeedNum;
+                }
+                set
+                {
+                    AssNeedNum = value;
                 }
             }
             public int[] RewardId

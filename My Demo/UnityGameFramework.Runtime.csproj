@@ -189,6 +189,7 @@
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Sound\DefaultSoundHelper.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Resource\BuiltinVersionListSerializer.UpdatableVersionListSerializeCallback.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Network\NetworkClosedEventArgs.cs" />
+     <Compile Include="Assets\GameFramework\Scripts\Runtime\Event\PackageItemChange.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Scene\UnloadSceneSuccessEventArgs.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Variable\VarSByte.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Download\WWWDownloadAgentHelper.cs" />
@@ -248,7 +249,6 @@
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Download\UnityWebRequestDownloadAgentHelper.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Utility\BinaryExtension.cs" />
      <Compile Include="Assets\GameFramework\Scripts\Runtime\Utility\DefaultJsonHelper.cs" />
-     <Compile Include="Assets\GameFramework\Scripts\Runtime\Event\PackageItemChange.cs" />
      <None Include="Assets\GameFramework\Scripts\Runtime\UnityGameFramework.Runtime.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\unity\2021.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
