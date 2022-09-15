@@ -15,28 +15,41 @@ namespace GameFramework.Resource
                 return EventId;
             }
         }
-        public List<int> changeId
+        public List<item> changeItem
         {
             get;
             private set;
         }
-        public List<int> changeNum
-        {
-            get;
-            private set;
-        }
+
         /// <summary>
-        /// 存储道具ID和道具数量数组,相同的id与数量的index对应
+        /// items包含道具Id和道具数量
         /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="Nums"></param>
+        /// <param name="items"></param>
         /// <returns></returns>
-        public static AssignmentCom Create(List<int> Id, List<int> Nums)
+        public static AssignmentCom Create(List<item> items)
         {
             AssignmentCom assignmentCom = ReferencePool.Acquire<AssignmentCom>();
-            assignmentCom.changeId = Id;
-            assignmentCom.changeNum = Nums;
+            assignmentCom.changeItem = items;
             return assignmentCom;
+        }
+        public struct item
+        {
+            int itemId;
+            int itemNum;
+            public int Id
+            {
+                get
+                {
+                    return itemId;
+                }
+            }
+            public int Num
+            {
+                get
+                {
+                    return itemNum;
+                }
+            }
         }
         public override void Clear()
         {

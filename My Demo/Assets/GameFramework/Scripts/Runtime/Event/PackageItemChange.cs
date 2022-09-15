@@ -22,10 +22,9 @@ namespace GameFramework.Resource
         }
 
         /// <summary>
-        /// 存储道具ID和道具数量数组,相同的id与数量的index对应
+        /// items包含道具Id和道具数量
         /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="Nums"></param>
+        /// <param name="items"></param>
         /// <returns></returns>
         public static PackageItemChange Create(List<item> items)
         {

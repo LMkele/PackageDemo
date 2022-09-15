@@ -23,6 +23,14 @@ namespace GameFramework.Resource
             string url = "任务请求地址";
             webRequest.AddWebRequest(url, this);
         }
+        protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
+            EventComponent Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
+            Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, initAssignment);
+            Event.Unsubscribe(WebRequestFailureEventArgs.EventId, requestFail);
+            Event.Unsubscribe(PackageItemChange.EventId, changeItems);
+        }
         /// <summary>
         /// 任务初始化
         /// </summary>
@@ -78,6 +86,14 @@ namespace GameFramework.Resource
                 }
             }
             return null;
+        }
+        /// <summary>
+        /// 任务完成
+        /// </summary>
+        public void AssignmentComplite()
+        {
+            EventComponent Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
+            Event.Fire(this, AssignmentCom.Create());
         }
         public struct Assignment
         {
