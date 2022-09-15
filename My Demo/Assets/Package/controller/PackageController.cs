@@ -21,17 +21,17 @@ namespace GameFramework.Resource
         {
 
         }
-        public List<item> getItemList()
+        public void getItemList()
         {
-            return model.getItemList();
+            model.getItemList();
         }
-        public List<item> getItemListById(int id)
+        public void getItemListById(int id)
         {
-            return model.getItemListById(id);
+            model.getItemListById(id);
         }
-        public List<item> getItemsListById(int[] id)
+        public void getItemsListById(List<int> id)
         {
-            return model.getItemsListById(id);
+            model.getItemsListById(id);
         }
         public void setItemList(List<item> item)
         {

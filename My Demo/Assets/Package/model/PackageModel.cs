@@ -24,16 +24,20 @@ namespace GameFramework.Resource
         public void changeItems(object sender, GameEventArgs e)
         {
             PackageItemChange packageItemChange = (PackageItemChange)e;
-            var changeId = packageItemChange.changeId;
-            var changeNum = packageItemChange.changeNum;
+            var changeItem = packageItemChange.changeItem;
+            var changeId = new List<int>();
+            for (var t = 0; t < changeItem.Count; t++)
+            {
+                changeId.Add(changeItem[t].Id);
+            }
             int itemLength = itemList.Count;
-            for (int j = 0; j < changeId.Length; j++)
+            for (int j = 0; j < changeId.Count; j++)
             {
                 for (int i = 0; i < itemLength; i++)
                 {
                     if (changeId[j] == itemList[i].ID)
                     {
-                        itemList[i].Num = changeNum[j];
+                        itemList[i].Num = changeItem[j].Num;
                     }
                 }
             }
@@ -65,11 +69,11 @@ namespace GameFramework.Resource
             }
             return null;
         }
-        public List<item>? getItemsListById(int[] Id)
+        public List<item>? getItemsListById(List<int> Id)
         {
             var id = Id;
             List<item> items = new List<item>();
-            for (var j = 0; j < id.Length; j++)
+            for (var j = 0; j < id.Count; j++)
             {
                 for (var i = 0; i < itemList.Count; i++)
                 {

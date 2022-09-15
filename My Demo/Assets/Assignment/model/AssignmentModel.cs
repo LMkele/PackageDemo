@@ -39,20 +39,27 @@ namespace GameFramework.Resource
         public void changeItems(object sender, GameEventArgs e)
         {
             PackageItemChange packageItemChange = (PackageItemChange)e;
-            int[] id = packageItemChange.changeId;
-            if (id.Length <= 0)
+            var changeItem = packageItemChange.changeItem;
+            var changeId = new List<int>();
+            var changeNum = new List<int>();
+            for (var t = 0; t < changeItem.Count; t++)
+            {
+                changeId.Add(changeItem[t].Id);
+                changeNum.Add(changeItem[t].Num);
+            }
+            if (changeItem.Count <= 0)
             {
                 return;
             }
-            int[] needId = assignment.NeedID;
-            int[] needNum = assignment.NeedNum;
-            for (var j = 0; j < needId.Length; j++)
+            List<int> needId = assignment.NeedID;
+            List<int> needNum = assignment.NeedNum;
+            for (var j = 0; j < needId.Count; j++)
             {
-                for (var i = 0; i < id.Length; i++)
+                for (var i = 0; i < changeId.Count; i++)
                 {
-                    if (needId[j] == id[i])
+                    if (needId[j] == changeItem[i].Id)
                     {
-                        needNum[i] = packageItemChange.changeNum[i];
+                        needNum[i] = changeItem[i].Num;
                     }
                 }
             }
@@ -77,10 +84,10 @@ namespace GameFramework.Resource
             int AssID; // 任务ID
             string AssName; //任务名称
             string AssDescribe;//任务描述
-            int[] AssNeedID;//任务需求id
-            int[] AssNeedNum;//任务需求数量
-            int[] AssRewardId;//任务奖励id
-            int[] AssRewardNum;//任务奖励数量
+            List<int> AssNeedID;//任务需求id
+            List<int> AssNeedNum;//任务需求数量
+            List<int> AssRewardId;//任务奖励id
+            List<int> AssRewardNum;//任务奖励数量
             public int ID
             {
                 get
@@ -102,7 +109,7 @@ namespace GameFramework.Resource
                     return AssDescribe;
                 }
             }
-            public int[] NeedID
+            public List<int> NeedID
             {
                 get
                 {
@@ -110,7 +117,7 @@ namespace GameFramework.Resource
                 }
 
             }
-            public int[] NeedNum
+            public List<int> NeedNum
             {
                 get
                 {
@@ -121,14 +128,14 @@ namespace GameFramework.Resource
                     AssNeedNum = value;
                 }
             }
-            public int[] RewardId
+            public List<int> RewardId
             {
                 get
                 {
                     return AssRewardId;
                 }
             }
-            public int[] RewardNum
+            public List<int> RewardNum
             {
                 get
                 {
